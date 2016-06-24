@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>PolyBooks -Laila Ben Brahim </title>
+
+
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href="{{ asset('assets/front/css/style.css') }}" rel='stylesheet' type='text/css'>
+
+    <!-- jQuery 2.2.0 -->
+    <script src="{{ asset('assets/admin/plugins/jQuery/jQuery-2.2.0.min.js') }}"></script>
+
+</head>
+<body>
+
+
+<ul>
+    <li><a class="active" href="{{ path('homepage') }}">Accueil </a></li>
+    <li><a href="{{ path('index_admin_page') }}">Administration</a></li>
+</ul>
+
+
+<div class="content">
+    <div style="margin-bottom: 10px; margin-top: 15px;">
+        <strong>Module: </strong>
+        <select  id="module" style="margin-left: 20px;">
+            <option value="all"> Tous les modules</option>
+            {% for module in modules %}
+                <option value="{{ module.id }}">{{ module.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <ul class="library"></ul>
+    <div class="overlay-page"></div>
+    <div class="overlay-summary"></div>
+</div>
+
+<footer>
+    <div style="background: #333333;height: 45px;">
+        <p style="color: white; padding-top: 10px; padding-left: 10px;">Développer par: Laila Ben Brahim</p>
+    </div>
+</footer>
+    <script src="{{ asset('assets/front/js/runlib.js') }}"></script>
+</body>
+</html>

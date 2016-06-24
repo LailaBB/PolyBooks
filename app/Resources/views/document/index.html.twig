@@ -1,0 +1,79 @@
+{%  extends "admin/layoutdata.html.twig" %}
+
+{% block content %}
+    <section class="content-header">
+        <h1>
+            document
+            <small>liste des documents</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ path('index_admin_page') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th class="text-center">Titre</th>
+                                <th class="text-center">Description</th>
+                                <th class="text-center">Module</th>
+                                <th class="text-center">Publique</th>
+                                <th class="text-center">Document</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for document in documents %}
+                                <tr>
+                                    <td class="text-center">{{ document.title }}</td>
+                                    <td class="text-center">{{ document.description }}</td>
+                                    <td class="text-center"> <span class="label label-warning">{{ document.module.name }}</span></td>
+                                    <td class="text-center">
+                                        <a href="{{ path('is_public', { 'id': document.id }) }}">
+                                            {%if document.isPublic == 1%}
+                                                <i class="fa fa-unlock fa-2x text-success animation-hatch"></i>
+                                            {% else %}
+                                                <i class="fa fa-unlock-alt fa-2x text-danger animation-hatch"></i>
+                                            {% endif %}
+                                        </a>
+                                    </td>
+                                    <td class="text-center">
+                                        {%if document.image.fileName is defined and  document.image.fileName %}
+                                            <a target="_blank" href="{{ asset ('uploads/files/' ~ document.document.fileName) }}">
+                                                <img width="50"  src="{{ asset('uploads/files/' ~ document.image.fileName)  }}">
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="{{ path('admin_document_edit', { 'id': document.id }) }}" data-toggle="tooltip" title="Modifier" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
+                                        <a href="{{ path('admin_document_delete', { 'id': document.id }) }}" data-toggle="tooltip" title="Suprimer" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <ul style="margin-top: 10px;">
+                            <a href="{{ path('admin_document_new') }}">
+                                <button class="btn-sm btn-success"><i class="fa fa-plus"></i>Ajouter un document</button>
+                            </a>
+                        </ul>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+
+{% endblock %}

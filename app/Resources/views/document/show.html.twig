@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Document</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ document.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ document.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ document.description }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if document.createdAt %}{{ document.createdAt|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ispublic</th>
+                <td>{% if document.isPublic %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ document.image }}</td>
+            </tr>
+            <tr>
+                <th>Document</th>
+                <td>{{ document.document }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_document_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_document_edit', { 'id': document.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

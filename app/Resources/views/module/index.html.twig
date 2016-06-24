@@ -1,0 +1,90 @@
+{%  extends "admin/layoutdata.html.twig" %}
+
+{% block content %}
+    <section class="content-header">
+        <h1>
+            Module
+            <small>liste des modules</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ path('index_admin_page') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th class="text-center">Nom</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for module in modules %}
+                                <tr>
+                                    <td class="text-center">{{ module.name }}</td>
+                                    <td class="text-center">
+                                        <a href="{{ path('admin_module_edit', { 'id': module.id }) }}" data-toggle="tooltip" title="Modifier" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
+                                        <a href="{{ path('admin_module_delete', { 'id': module.id }) }}" data-toggle="tooltip" title="Suprimer" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <ul style="margin-top: 10px;">
+                            <a href="{{ path('admin_module_new') }}">
+                                <button class="btn-sm btn-success"><i class="fa fa-plus"></i>Ajouter un module</button>
+                            </a>
+                        </ul>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+
+{% endblock %}
+
+{% block JS %}
+    <script>
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                    sURLVariables = sPageURL.split('&'),
+                    sParameterName,
+                    i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+        $( document ).ready(function() {
+            var locale = getUrlParameter('locale');
+            if(typeof locale !== "undefined"){
+                $('#locale option[value='+locale+']').prop('selected', true);
+            }
+            $( "#locale" ).change(function() {
+                if(typeof locale === "undefined"){
+                    window.location.replace(document.URL +"?locale=" + $( this ).val());
+                }else{
+                    var url = document.URL.replace("?locale=" +locale, "?locale=" + $( this ).val());
+                    window.location.replace(url);
+                }
+            });
+        });
+    </script>
+{% endblock %}
