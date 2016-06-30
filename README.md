@@ -2,4 +2,6 @@ PolyBooks is a web application that allows Polytechs’ teachers to put into stu
 On this application we have the different modules displayed on shelves (like on a store’s window), then when picking a module we find inside the list of documents attached to it sorted out in a specific order.
 =======
 
+The application is available on : http://polybooks.fr/
+
 Developped by Laila Ben Brahim
