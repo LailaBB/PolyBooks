@@ -27,9 +27,9 @@ class DocumentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        if($this->getUser()->getRole() == 'ROLE_ADMIN')
+       // if($this->getUser()->getRole() == 'ROLE_ADMIN')
           $documents = $em->getRepository('AppBundle:Document')->findAll();
-        else  $documents = $em->getRepository('AppBundle:Document')->findBy(array('createdBy' => $this->getUser()->getId() ));
+       // else  $documents = $em->getRepository('AppBundle:Document')->findBy(array('createdBy' => $this->getUser()->getId() ));
 
         return $this->render('document/index.html.twig', array(
             'documents' => $documents,

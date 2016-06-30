@@ -115,7 +115,13 @@ class ModuleController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $em->remove($module);
-            $em->flush();
+            
+            try{
+                $em->flush();
+            }catch(\Exception $e){
+                 return $this->redirectToRoute('admin_module_index');
+            }
+            
 
 
         return $this->redirectToRoute('admin_module_index');

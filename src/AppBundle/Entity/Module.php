@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Module
@@ -25,6 +26,8 @@ class Module
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=400)
+     * @Assert\NotBlank(message="Veuillez remplir le champ obligatoire")
+     * 
      */
     private $name;
 

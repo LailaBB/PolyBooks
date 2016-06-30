@@ -1,6 +1,6 @@
 var animationSpeed = 750;
 var library = [];
-var baseUrl = "http://127.0.0.1:8000/";
+var baseUrl = "http://polybooks.fr/";
 
 
 
@@ -37,7 +37,7 @@ $(document).ready(function(){
 
     $.ajax({
         method: "GET",
-        url: baseUrl + "api/documents/?module=" + module
+        url: baseUrl + "api/documents?module=" + module
     })
     .done(function( result ) {
             fillLibrary(result.data);

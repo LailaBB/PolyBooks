@@ -1,0 +1,11 @@
+AppBundle\Entity\User:
+    properties:
+        email:
+            - NotBlank:
+                message: "Please enter an email"
+        username:
+            - NotBlank:
+                message: "Please enter an username"
+        plainPassword:
+            - NotBlank:
+                message: "Please enter a password"

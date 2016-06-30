@@ -34,7 +34,7 @@ security:
                 default_target_path: /admin
             logout:
                 path:  logout_admin
-                target: /admin/login
+                target: homepage
             anonymous:    true
 
         main:

@@ -47,7 +47,7 @@ class DocumentController extends FOSRestController
         $view = FOSView::create();
         $moduleId = $request->query->get('module');
 
-        if(isset($moduleId) && $moduleId != 'all')
+        if(isset($moduleId) && $moduleId != 'all'  && $moduleId !='undefined')
             $documents = $em->getRepository('AppBundle:Document')->findBy(array( 'module' => $moduleId));
         else $documents = $em->getRepository('AppBundle:Document')->findAll();
 
